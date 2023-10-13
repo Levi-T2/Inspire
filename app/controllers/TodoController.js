@@ -5,6 +5,25 @@ import { getFormData } from "../utils/FormHandler.js"
 import { Pop } from "../utils/Pop.js"
 import { setHTML } from "../utils/Writer.js"
 
+function _drawMyTodos() {
+    // let numberOfTodos = ''
+    // numberOfTodos += AppState.myTodos.length
+    const todos = AppState.myTodos
+    let unCompletedTodos = ''
+    let i = 0
+    for (let i = 0; i < todos.length; i++) {
+        let test = todos[i]
+        console.log(test)
+        unCompletedTodos += 1
+        console.log(unCompletedTodos)
+        return
+    }
+    console.log(unCompletedTodos)
+    const todoElement = document.getElementById('numberOfTodos')
+    // @ts-ignore
+    // todoElement.innerText = numberOfTodos
+}
+
 function _drawTodos() {
     console.log('drawing todos')
     const todos = AppState.myTodos
@@ -12,9 +31,9 @@ function _drawTodos() {
     let content = ''
     todos.forEach(todo => content += ` 
     <p class="text-start">
-    <span class="">
+    <span onclick="app.TodoController.completeTodo('${todo.id}')"class="">
       <label class="form-check" for="completed"></label>
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <input type="checkbox" class="form-check-input" id="completed" >
     </span>
     ${todo.description}
     <span class="">
@@ -25,6 +44,7 @@ function _drawTodos() {
   </p>`)
     // console.log(content)
     setHTML('todoList', content)
+    _drawMyTodos()
 }
 
 export class TodoController {
@@ -74,5 +94,20 @@ export class TodoController {
             Pop.error(error)
         }
     }
+
+    async completeTodo(todoId) {
+        try {
+            // console.log('TODO CONTROLLER: trying to complete', todoId)
+            await todoService.completeTodo(todoId)
+        } catch (error) {
+            console.error(error)
+            Pop.error(error)
+        }
+    }
+
+    // computeChecked() {
+    //     const todos = AppState.myTodos
+    //     if ()
+    // }
 
 }

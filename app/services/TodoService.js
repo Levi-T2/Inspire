@@ -28,6 +28,22 @@ class TodoService {
         AppState.myTodos.splice(todoIndex, 1)
         AppState.emit('myTodos')
     }
+
+    async completeTodo(todoId) {
+        const todoIndex = AppState.myTodos.findIndex(myTodos => myTodos.id == todoId)
+        if (todoIndex == -1) { return }
+        const foundTodo = AppState.myTodos[todoIndex]
+        const todoData = {
+            completed: !foundTodo.completed
+        }
+
+        const res = await api.put(`api/todos/${todoId}`, todoData)
+        console.log("COMPLETED TODO", res.data)
+        const newTodo = new Todo(res.data)
+        AppState.myTodos.splice(todoIndex, 1, newTodo)
+        // AppState.emit('myTodos')
+
+    }
 }
 
 export const todoService = new TodoService()

@@ -17,7 +17,7 @@
 
 <body>
   <!-- SECTION -->
-  <header>
+  <!-- <header>
     <nav class="navbar navbar-dark navbar-expand bg-dark text-light px-2">
       <a class="navbar-brand" href="#">
         <img src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png" height="45" alt=""
@@ -29,13 +29,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <!-- <div class="navbar-nav">
+        <div class="navbar-nav">
           <a href="#/about" class="nav-link">About</a>
-        </div> -->
+        </div>
       </div>
-      <div class="flex-grow-1 justify-content-end align-items-center d-flex" id="authstate"></div>
+
     </nav>
-  </header>
+  </header> -->
 
   <!-- SECTION -->
   <main>
@@ -44,37 +44,22 @@
       <!-- primary viewport -->
       <div class="container-fluid">
         <section class="row">
-          <div class="col-6">
+          <div class="col-6 p-3 text-light fs-3 fw-bold">
+            <p class="m-0">Image by:</p>
+            <div id="imgAuthor">
+            </div>
+          </div>
+          <div class="col-6 d-flex justify-content-end">
             <div class="p-3">
               <a class="btn btn-info rounded-pill" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                 aria-controls="offcanvasExample">
-                Todo List
+                Todo List: <span id="numberOfTodos"></span>
               </a>
             </div>
           </div>
-          <div class="col-6">
-
-          </div>
-
-        </section>
       </div>
-
-      <!-- <div>
-        <form onsubmit="app.TodoController.createTodo(event)">
-          <div class="mb-3">
-            <label for="description">Todo Name</label>
-            <input type="text" required minlength="2" maxlength="14" name="description" id="description">
-          </div>
-          <button type="submit" class="btn btn-success">Create Todo</button>
-        </form>
-      </div> -->
-
-
-      <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-        aria-controls="offcanvasExample">
-        Button with data-bs-target
-      </button> -->
-
+    </section>
+    </div>
 
     </section>
 
@@ -117,11 +102,30 @@
   </div>
 
   <!-- SECTION -->
-  <!-- <footer class="bg-dark text-light">
-    <div class="text-center no-select">
-      <p class="mb-0"><small>Made with 💖 by CodeWorks</small></p>
+  <footer>
+    <div class="container">
+      <div id="quoteText" class="text-light fs-5 text-center quote-content">
+      </div>
+      <div id="quoteAuthor" class="text-light fs-3 text-center quote-author">
+      </div>
+      <section class="row justify-content-center menu-dock">
+        <div class="col-4">
+          <div>
+            <p id="weather"></p>
+            <i class="mdi mdi-cloud"></i>
+          </div>
+        </div>
+        <div class="col-4">
+          <div id="clock" class="col-12 mt-5 text-center fs-5 text-light fs-bold">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="flex-grow-1 justify-content-end align-items-center d-flex" id="authstate">
+          </div>
+        </div>
+      </section>
     </div>
-  </footer> -->
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.22/auth0-spa-js.production.js"></script>

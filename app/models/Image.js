@@ -4,6 +4,6 @@ export class Image {
         this.url = data.url
         this.largeImgUrl = data.largeImgUrl
         this.author = data.author
-
     }
+
 }

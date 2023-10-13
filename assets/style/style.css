@@ -4,3 +4,28 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+.menu-dock {
+    background-color: rgba(46, 46, 46, 0.729);
+    padding: 2rem;
+    margin: 2rem;
+    color: white;
+    border-radius: 2%;
+}
+
+
+.quote-author {
+    opacity: 0;
+    visibility: hidden;
+    transition: ease-in-out .30s;
+}
+
+
+.quote-content {
+    cursor: help;
+}
+
+.quote-content:hover+.quote-author {
+    opacity: 1;
+    visibility: visible;
+}

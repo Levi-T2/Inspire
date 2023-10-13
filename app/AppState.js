@@ -17,6 +17,12 @@ class ObservableAppState extends EventEmitter {
 
   myImage = []
 
+  myQuote = []
+
+  myWeather = []
+
+  myTime = []
+
   // Used to load initial data
   init() {
 
