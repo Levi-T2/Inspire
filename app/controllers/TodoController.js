@@ -25,26 +25,58 @@ function _drawMyTodos() {
 
 
 function _drawTodos() {
-    // console.log('drawing todos')
     const todos = AppState.myTodos
-    // console.log(todos)
     let content = ''
-    todos.forEach(todo => content += ` 
-    <p class="text-start">
-    <span onclick="app.TodoController.completeTodo('${todo.id}')">
-      <label class="form-check" for="completed"></label>
-      <input type="checkbox" class="form-check-input" id="completed">
-    </span>
-    ${todo.description}
-    <span class="">
-      <button onclick="app.TodoController.deleteTodo('${todo.id}')" class="btn btn-danger">
-        <i class="mdi mdi-delete"></i>
-      </button>
-    </span>
-  </p>`)
+
+    // NOTE old code, add in if bottom breaks
+    //     todos.forEach(todos => content += ` 
+    //     <p class="text-start" id="compute">
+    //     <span onclick="app.TodoController.completeTodo('${todos.id}')">
+    //       <label class="form-check" for="completed"></label>
+    //       <input type="checkbox" class="form-check-input" id="completed">
+    //     </span>
+    //     ${todos.description}
+    //     <span class="">
+    //       <button onclick="app.TodoController.deleteTodo('${todos.id}')" class="btn btn-danger">
+    //         <i class="mdi mdi-delete"></i>
+    //       </button>
+    //     </span>
+    //   </p>`)
     // console.log(content)
-    setHTML('todoList', content)
+    // setHTML('todoList', content)
+
+    todos.forEach(todos => {
+        if (todos.completed) {
+            content += `   <span onclick="app.TodoController.completeTodo('${todos.id}')">
+        <label class="form-check" for="completed"></label>
+        <input type="checkbox" checked class="form-check-input" id="completed">
+      </span>
+      ${todos.description}
+      <span class="">
+        <button onclick="app.TodoController.deleteTodo('${todos.id}')" class="btn btn-danger">
+          <i class="mdi mdi-delete"></i>
+        </button>
+      </span>`
+            setHTML('todoList', content)
+        } else {
+            content += `   <span onclick="app.TodoController.completeTodo('${todos.id}')">
+        <label class="form-check" for="completed"></label>
+        <input type="checkbox" class="form-check-input" id="completed">
+      </span>
+      ${todos.description}
+      <span class="">
+        <button onclick="app.TodoController.deleteTodo('${todos.id}')" class="btn btn-danger">
+          <i class="mdi mdi-delete"></i>
+        </button>
+      </span>`
+            setHTML('todoList', content)
+        }
+    }
+    )
 }
+
+
+
 
 export class TodoController {
     constructor() {
@@ -53,7 +85,6 @@ export class TodoController {
         // AppState.on('account', _drawTodos)
         AppState.on('myTodos', _drawTodos)
         AppState.on('myTodos', _drawMyTodos)
-        // AppState.on('myTodos', this.computeChecked)
     }
 
     async getTodoList() {
@@ -105,16 +136,5 @@ export class TodoController {
             Pop.error(error)
         }
     }
-
-    // FIXME this function is working but it breaks my on-click 
-    // computeChecked() {
-    //     const todos = AppState.myTodos
-    //     let content = `<input type="checkbox" checked class="form-check-input" id="completed">`
-    //     todos.forEach(todo => {
-    //         if (todo.completed)
-    //             setHTML('compute', content)
-    //     }
-    //     )
-    // }
 
 }
