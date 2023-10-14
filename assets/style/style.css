@@ -29,3 +29,7 @@ body {
     opacity: 1;
     visibility: visible;
 }
+
+.text-shadow-css {
+    text-shadow: 2px 2px 2px black;
+}

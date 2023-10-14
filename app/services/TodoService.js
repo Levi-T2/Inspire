@@ -41,7 +41,7 @@ class TodoService {
         console.log("COMPLETED TODO", res.data)
         const newTodo = new Todo(res.data)
         AppState.myTodos.splice(todoIndex, 1, newTodo)
-        // AppState.emit('myTodos')
+        AppState.emit('myTodos')
 
     }
 }

@@ -5,35 +5,35 @@ import { getFormData } from "../utils/FormHandler.js"
 import { Pop } from "../utils/Pop.js"
 import { setHTML } from "../utils/Writer.js"
 
+
 function _drawMyTodos() {
-    // let numberOfTodos = ''
-    // numberOfTodos += AppState.myTodos.length
     const todos = AppState.myTodos
-    let unCompletedTodos = ''
-    let i = 0
-    for (let i = 0; i < todos.length; i++) {
-        let test = todos[i]
-        console.log(test)
-        unCompletedTodos += 1
+
+    console.log(todos)
+    let unCompletedTodos = 0
+    todos.forEach(todo => {
+        if (!todo.completed)
+            unCompletedTodos += 1
         console.log(unCompletedTodos)
-        return
     }
-    console.log(unCompletedTodos)
+    )
+
     const todoElement = document.getElementById('numberOfTodos')
     // @ts-ignore
-    // todoElement.innerText = numberOfTodos
+    todoElement.innerText = unCompletedTodos
 }
 
+
 function _drawTodos() {
-    console.log('drawing todos')
+    // console.log('drawing todos')
     const todos = AppState.myTodos
     // console.log(todos)
     let content = ''
     todos.forEach(todo => content += ` 
     <p class="text-start">
-    <span onclick="app.TodoController.completeTodo('${todo.id}')"class="">
+    <span onclick="app.TodoController.completeTodo('${todo.id}')">
       <label class="form-check" for="completed"></label>
-      <input type="checkbox" class="form-check-input" id="completed" >
+      <input type="checkbox" class="form-check-input" id="completed">
     </span>
     ${todo.description}
     <span class="">
@@ -44,7 +44,6 @@ function _drawTodos() {
   </p>`)
     // console.log(content)
     setHTML('todoList', content)
-    _drawMyTodos()
 }
 
 export class TodoController {
@@ -53,6 +52,8 @@ export class TodoController {
         AppState.on('account', this.getTodoList)
         // AppState.on('account', _drawTodos)
         AppState.on('myTodos', _drawTodos)
+        AppState.on('myTodos', _drawMyTodos)
+        // AppState.on('myTodos', this.computeChecked)
     }
 
     async getTodoList() {
@@ -105,9 +106,15 @@ export class TodoController {
         }
     }
 
+    // FIXME this function is working but it breaks my on-click 
     // computeChecked() {
     //     const todos = AppState.myTodos
-    //     if ()
+    //     let content = `<input type="checkbox" checked class="form-check-input" id="completed">`
+    //     todos.forEach(todo => {
+    //         if (todo.completed)
+    //             setHTML('compute', content)
+    //     }
+    //     )
     // }
 
 }
