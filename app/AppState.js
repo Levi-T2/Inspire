@@ -23,6 +23,9 @@ class ObservableAppState extends EventEmitter {
 
   myTime = []
 
+  celcius = []
+  fahrenheit = []
+
   // Used to load initial data
   init() {
 

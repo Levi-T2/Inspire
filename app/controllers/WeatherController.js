@@ -5,8 +5,14 @@ import { setHTML } from "../utils/Writer.js"
 
 function _drawWeather() {
     let content = ''
+    let temperature = ''
+    let fahrenheit = AppState.fahrenheit
+    let celcius = AppState.celcius
     // @ts-ignore
-    content += AppState.myWeather.main.feels_like
+    temperature += AppState.myWeather.main.feels_like
+
+    content += `<p onclick="app.WeatherController.changeTemperatureCelcius()" role="button">${fahrenheit} Fahrenheit</p>`
+
 
 
     // console.log(AppState.myWeather.main.feels_like)
@@ -30,4 +36,28 @@ export class WeatherController {
             Pop.error(error)
         }
     }
+
+    changeTemperatureCelcius() {
+        let content = ''
+        let celcius = AppState.celcius
+        content += `<p onclick="app.WeatherController.changeTemperatureFahrenheit()" role="button">${celcius} Celcius</p>`
+        setHTML('weather', content)
+    }
+
+    changeTemperatureFahrenheit() {
+        let content = ''
+        let fahrenheit = AppState.fahrenheit
+        content += `<p onclick="app.WeatherController.changeTemperatureCelcius()" role="button">${fahrenheit} Fahrenheit</p>`
+        setHTML('weather', content)
+    }
+
+    // async temperatureConverter(weatherValue) {
+    //     try {
+
+    //         await weatherService.temperatureConverter()
+    //     } catch (error) {
+    //         console.error(error)
+    //         Pop.error(error)
+    //     }
+    // }
 }
